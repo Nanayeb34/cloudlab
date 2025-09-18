@@ -31,8 +31,10 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run App
-        run: python cloudlab/manage.py runserver
+      - name: Collect static files
+        run: |
+          source venv/bin/activate
+          python cloudlab/manage.py collectstatic --noinput
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Upload artifact for deployment jobs
@@ -61,3 +63,4 @@ jobs:
           slot-name: 'Production'
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3CB64A1809D94AC081E9FD4316AD593B }}
+
