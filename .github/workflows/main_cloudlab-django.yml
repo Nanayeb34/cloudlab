@@ -31,7 +31,8 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-        
+      - name: Run App
+        run: python cloudlab/manage.py runserver
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Upload artifact for deployment jobs
@@ -58,4 +59,5 @@ jobs:
         with:
           app-name: 'cloudlab-django'
           slot-name: 'Production'
+
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3CB64A1809D94AC081E9FD4316AD593B }}
